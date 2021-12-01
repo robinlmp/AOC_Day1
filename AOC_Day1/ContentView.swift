@@ -12,9 +12,9 @@ struct ContentView: View {
         Text("number of increases: \(countIncreases(readings: rollingTotals(readings: loadFile(fileName: "input")) ))")
     }
     
+    
     func rollingTotals(readings: [Int]) -> [Int] {
         var returnArray: [Int] = []
-        
         for i in 0..<readings.count {
             if i < 2 {
                 continue
@@ -24,6 +24,7 @@ struct ContentView: View {
         }
         return returnArray
     }
+    
     
     func countIncreases(readings: [Int]) -> Int {
         var counter = 0
@@ -62,6 +63,7 @@ struct ContentView: View {
         return [9999] // defaut return value if everything above fails
     }
 }
+
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
