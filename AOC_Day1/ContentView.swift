@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        Text("number of increases: \(countIncreases(readings: rollingTotals(readings: loadFile(fileName: "input")) ))")
+        Text("number of increases: \(countIncreases(readings: rollingTotals(readings: loadFile(fileName: "input") ?? []) ))")
     }
     
     
@@ -38,7 +38,7 @@ struct ContentView: View {
     
     func loadFile(fileName: String) -> [Int]? {
         guard let filepath = Bundle.main.path(forResource: fileName, ofType: "txt"),
-              let contents = try String(contentsOfFile: filepath) else {
+              let contents = try? String(contentsOfFile: filepath) else {
             return nil
         }
         var returnArray: [Int] = []
