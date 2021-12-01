@@ -9,7 +9,20 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        Text("number of increases: \(countIncreases(readings: loadFile(fileName: "input")))")
+        Text("number of increases: \(countIncreases(readings: rollingTotals(readings: loadFile(fileName: "input")) ))")
+    }
+    
+    func rollingTotals(readings: [Int]) -> [Int] {
+        var returnArray: [Int] = []
+        
+        for i in 0..<readings.count {
+            if i < 2 {
+                continue
+            } else {
+                returnArray.append( readings[i-2] + readings[i-1] + readings[i] )
+            }
+        }
+        return returnArray
     }
     
     func countIncreases(readings: [Int]) -> Int {
@@ -19,7 +32,6 @@ struct ContentView: View {
                 continue
             } else {
                 if readings[i] > readings[i-1] {
-                    print(readings[i])
                     counter += 1
                 }
             }
